@@ -1,0 +1,35 @@
+<%= form_for @listing do |f| %>
+  <div class="text-field">
+    <%= f.label :description %>
+    <%= f.text_area :description, type: 'text' %>
+  </div>
+
+  <div class="text-field">
+    <%= f.label :price %>
+    <%= f.number_field :price, type: 'number' %>
+  </div>
+
+  <div class="text-field">
+    <%= f.label :address %>
+    <%= f.text_field :address, type: 'text' %>
+  </div>
+
+  <div class="text-field">
+    <%= f.label :room_count %>
+    <%= f.number_field :room_count, type: 'number' %>
+  </div>
+
+  <div class="text-field">
+    <%= f.label :bed_count %>
+    <%= f.number_field :bed_count, type: 'number' %>
+  </div>
+
+  <div class="text-field">
+    <%= f.label :guest_count %>
+    <%= f.number_field :guest_count, type: 'number' %>
+  </div>
+
+  <div class="submit-field">
+    <%= f.submit %>
+  </div>
+<% end %>
