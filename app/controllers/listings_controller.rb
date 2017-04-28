@@ -7,8 +7,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(strong_params)
-    @listing.user_id = current_user.id
+    @listing = current_user.listings.new(strong_params)
     if @listing.save
       redirect_to @listing
     else
@@ -22,6 +21,6 @@ class ListingsController < ApplicationController
 
   private
   def strong_params
-    params.require(:listing).permit(:user_id, :description, :price, :address, :room_count, :bed_count, :guest_count, :tag_list)
+    params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_count, :bed_count, :guest_count, :tag_list)
   end
 end
