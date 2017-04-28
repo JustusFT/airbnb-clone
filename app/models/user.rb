@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :authentications, :dependent => :destroy
   has_many :listings
+  has_many :bookings
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     user = User.create!(full_name: auth_hash["extra"]["raw_info"]["name"], email: auth_hash["extra"]["raw_info"]["email"])

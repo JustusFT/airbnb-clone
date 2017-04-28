@@ -1,0 +1,25 @@
+<%= form_for ([@listing, @booking]) do |f| %>
+  <div style="display: inline-block">
+    <div class="text-field row">
+      <div class="col-sm-6">
+        <%= f.label :check_in %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.date_field :check_in, type: 'date' %>
+      </div>
+    </div>
+
+    <div class="text-field row">
+      <div class="col-sm-6">
+        <%= f.label :check_out %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.date_field :check_out, type: 'date' %>
+      </div>
+    </div>
+
+    <div class="submit-field">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

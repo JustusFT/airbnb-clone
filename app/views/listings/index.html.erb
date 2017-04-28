@@ -3,7 +3,7 @@
 <% listings = Listing.order(created_at: :desc) %>
 <% listings.page(query_params[:page]).each do |x| %>
   <div class="listing col-sm-6 col-md-4 col-lg-3">
-    <h1><%= x.name %></h1>
+    <h1><%= link_to x.name, controller: "listings", action: "show", id: x.id %></h1>
     <p><%= x.description %></p>
     <p><%= x.price %></p>
   </div>

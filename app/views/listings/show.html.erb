@@ -1,1 +1,6 @@
-<%= Listing.find(params[:id]) %>
+<% listing = Listing.find(params[:id]) %>
+<h1><%= listing.name %></h1>
+<p><%= listing.description %></p>
+<p><%= listing.price %></p>
+
+<%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: listing.id %>
