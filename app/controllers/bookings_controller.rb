@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
   def new
-    byebug
     @listing = Listing.find(params[:listing_id])
     @booking = Booking.new
     render :"bookings/new"
@@ -10,11 +9,11 @@ class BookingsController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     @booking = @listing.bookings.new(strong_params)
     @booking.user_id = current_user.id
-    byebug
     if @booking.save
       redirect_to [@listing, @booking]
     else
-      redirect_to "/bookings/new"
+      flash[:notice] = @booking.errors.messages
+      redirect_to @listing
     end
   end
 
