@@ -1,0 +1,7 @@
+<% Listing.all.each do |x| %>
+  <div class="listing">
+    <h1><%= x.name %></h1>
+    <p><%= x.description %></p>
+    <p><%= x.price %></p>
+  </div>
+<% end %>

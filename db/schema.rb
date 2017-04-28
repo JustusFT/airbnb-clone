@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170428002521) do
   end
 
   create_table "listings", force: :cascade do |t|
+    t.string  "name",        null: false
     t.integer "user_id",     null: false
     t.string  "description"
     t.decimal "price",       null: false
