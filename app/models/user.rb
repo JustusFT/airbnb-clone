@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include Clearance::User
   validates_confirmation_of :password
 
+  enum role: [ :customer, :moderator, :admin ]
+
   def skip_password_validation?
     true
   end
