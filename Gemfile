@@ -11,6 +11,7 @@ gem 'omniauth-facebook'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'faker'
 gem 'kaminari'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
