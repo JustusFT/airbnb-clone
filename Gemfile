@@ -7,8 +7,10 @@ end
 
 gem 'clearance'
 gem 'figaro'
-
 gem 'omniauth-facebook'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'faker'
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
