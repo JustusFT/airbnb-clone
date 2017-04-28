@@ -26,14 +26,16 @@ ActiveRecord::Schema.define(version: 20170428002521) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string  "name",        null: false
-    t.integer "user_id",     null: false
-    t.string  "description"
-    t.decimal "price",       null: false
-    t.string  "address",     null: false
-    t.integer "room_count",  null: false
-    t.integer "bed_count",   null: false
-    t.integer "guest_count", null: false
+    t.string   "name",        null: false
+    t.integer  "user_id",     null: false
+    t.string   "description"
+    t.decimal  "price",       null: false
+    t.string   "address",     null: false
+    t.integer  "room_count",  null: false
+    t.integer  "bed_count",   null: false
+    t.integer  "guest_count", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "taggings", force: :cascade do |t|

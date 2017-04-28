@@ -1,4 +1,6 @@
-<% Listing.all.each do |x| %>
+<% query_params = request.query_parameters %>
+<% query_params[:page] ||= 1 %>
+<% Listing.order(created_at: :desc).page(query_params[:page]).each do |x| %>
   <div class="listing">
     <h1><%= x.name %></h1>
     <p><%= x.description %></p>
