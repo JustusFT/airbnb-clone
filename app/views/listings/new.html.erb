@@ -29,6 +29,12 @@
     <%= f.number_field :guest_count, type: 'number' %>
   </div>
 
+  <div class="text-field">
+    <%= f.label :tag_list %>
+    (Separate tags with a comma)
+    <%= f.text_field :tag_list, type: 'text' %>
+  </div>
+
   <div class="submit-field">
     <%= f.submit %>
   </div>
