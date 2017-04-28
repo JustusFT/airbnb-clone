@@ -1,19 +1,37 @@
-<div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
-</div>
+<div style="display:inline-block">
+  <div class="text-field row ">
+    <div class="col-sm-6">
+      <%= form.label :email %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.text_field :email, type: 'email' %>
+    </div>
+  </div>
 
-<div class="text-field">
-  <%= form.label :full_name %>
-  <%= form.text_field :full_name, type: 'text' %>
-</div>
+  <div class="text-field row">
+    <div class="col-sm-6">
+      <%= form.label :full_name %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.text_field :full_name, type: 'text' %>
+    </div>
+  </div>
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
-</div>
+  <div class="password-field row">
+    <div class="col-sm-6">
+      <%= form.label :password %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.password_field :password %>
+    </div>
+  </div>
 
-<div class="password-confirmation-field">
-  <%= form.label :password_confirmation %>
-  <%= form.password_field :password_confirmation %>
+  <div class="password-confirmation-field row">
+    <div class="col-sm-6">
+      <%= form.label :password_confirmation %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.password_field :password_confirmation %>
+    </div>
+  </div>
 </div>

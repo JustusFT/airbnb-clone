@@ -2,11 +2,13 @@
 <% query_params[:page] ||= 1 %>
 <% listings = Listing.order(created_at: :desc) %>
 <% listings.page(query_params[:page]).each do |x| %>
-  <div class="listing">
+  <div class="listing col-sm-6 col-md-4 col-lg-3">
     <h1><%= x.name %></h1>
     <p><%= x.description %></p>
     <p><%= x.price %></p>
   </div>
 <% end %>
-<%= link_to "Previous", controller: "listings", action: "index", page: query_params[:page].to_i - 1 unless listings.page(query_params[:page]).first_page? %>
-<%= link_to "Next", controller: "listings", action: "index", page: query_params[:page].to_i + 1 unless listings.page(query_params[:page]).last_page? %>
+<div class="col-xs-12">
+  <%= link_to "Previous", controller: "listings", action: "index", page: query_params[:page].to_i - 1 unless listings.page(query_params[:page]).first_page? %>
+  <%= link_to "Next", controller: "listings", action: "index", page: query_params[:page].to_i + 1 unless listings.page(query_params[:page]).last_page? %>
+</div>
