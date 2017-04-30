@@ -14,6 +14,7 @@ gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-ui-rails'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'carrierwave', '~> 1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

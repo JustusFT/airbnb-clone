@@ -1,0 +1,7 @@
+<%= form_for @user do |f| %>
+  <%= f.file_field :avatar %>
+  <%= f.submit %>
+<% end %>
+
+Current Avatar:
+<%= image_tag(@user.avatar_url) if @user.avatar? %>
