@@ -19,3 +19,15 @@
 #main-container {
   max-width: 1080px;
 }
+
+.profile-pic {
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+}
+
+#sign-out {
+  position: relative;
+  top: 8px;
+  margin-left: 16px;
+}

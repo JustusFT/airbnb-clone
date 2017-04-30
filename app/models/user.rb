@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   enum role: [ :customer, :moderator, :admin ]
 
+  mount_uploader :avatar, AvatarUploader
+
   def skip_password_validation?
     true
   end
