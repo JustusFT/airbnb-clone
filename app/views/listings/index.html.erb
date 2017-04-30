@@ -2,10 +2,14 @@
 <% query_params[:page] ||= 1 %>
 <% listings = Listing.order(created_at: :desc) %>
 <% listings.page(query_params[:page]).each do |x| %>
-  <div class="listing col-sm-6 col-md-4 col-lg-3">
-    <h1><%= link_to x.name, controller: "listings", action: "show", id: x.id %></h1>
-    <p><%= x.description %></p>
-    <p><%= x.price %></p>
+  <div class="listing col-sm-6 col-lg-4">
+    <img src="http://placehold.it/640x480" alt="" class="img-responsive">
+    <h4 style="
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    "><%= link_to "$#{x.price} #{x.name}", controller: "listings", action: "show", id: x.id %></h4>
+    <div><%= "TODO PRIVATE VS WHOLE | #{x.bed_count} beds" %></div>
   </div>
 <% end %>
 <div class="col-xs-12">
