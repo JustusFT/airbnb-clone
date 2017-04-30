@@ -1,3 +1,14 @@
+<script type="text/javascript">
+  var x = new Date;
+  $(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd",
+    beforeShowDay: function(date) {
+      //disable dates from the past
+      return [x <= date]
+    }
+  });
+</script>
+
 <%= form_for ([@listing, @booking]) do |f| %>
   <div style="display: inline-block">
     <div class="text-field row">

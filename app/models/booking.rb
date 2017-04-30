@@ -8,7 +8,7 @@ class Booking < ApplicationRecord
   # (StartA <= EndB) and (EndA >= StartB)
 
   def overlapping_dates
-    Booking.all.each do |x|
+    self.listing.bookings.where.not(id: nil).each do |x|
       if self.check_in <= x.check_out && self.check_out >= x.check_in
         self.errors.add(:check_in, "overlaps")
       end
