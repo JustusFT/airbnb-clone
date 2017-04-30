@@ -2,5 +2,7 @@
 <h1><%= listing.name %></h1>
 <p><%= listing.description %></p>
 <p><%= listing.price %></p>
+<h3>Amenities</h3>
+<p><%= listing.amenities.pluck(:name) %></p>
 
 <%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: listing.id %>
