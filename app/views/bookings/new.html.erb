@@ -6,11 +6,9 @@
 <% end %>
 <script type="text/javascript">
   $(document).ready(function() {
-    alert("hi");
     var current_date = new Date;
     // convert array of taken dates above to JS
     var takenDates = <%= raw @taken_dates %>
-    console.log(takenDates);
     $(".datepicker").datepicker({
       dateFormat: "yy-mm-dd",
       beforeShowDay: function(date) {
