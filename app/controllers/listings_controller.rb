@@ -8,6 +8,11 @@ class ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.new(strong_params)
+
+    params[:amenities].each do |k, v|
+      @listing.amenity_list.add(k)
+    end
+
     if @listing.save
       redirect_to @listing
     else
