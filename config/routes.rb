@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :pages
-  resources :listings
+  resources :listings do
+    resources :bookings
+  end
+  # resources :bookings
 
   root "pages#index"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
