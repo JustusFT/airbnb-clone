@@ -12,11 +12,12 @@ user['password'] = 'asdf'
 user['password_confirmation'] = 'asdf'
 
 ActiveRecord::Base.transaction do
-  20.times do
+  5.times do
     user['full_name'] = Faker::Name.first_name
     user['email'] = Faker::Internet.email
-
-    User.create(user)
+    u = User.new(user)
+    # u.avatar = open(Faker::Avatar.image)
+    u.save!
   end
 end
 
@@ -26,7 +27,7 @@ uids = []
 User.all.each { |u| uids << u.id }
 
 ActiveRecord::Base.transaction do
-  40.times do
+  5.times do
     listing['name'] = Faker::App.name
     listing['room_count'] = rand(0..5)
     listing['bed_count'] = rand(1..6)
@@ -39,6 +40,16 @@ ActiveRecord::Base.transaction do
 
     listing['user_id'] = uids.sample
 
-    Listing.create(listing)
+    l = Listing.new(listing)
+
+    random_photos = []
+    rand(1..4).times do
+      x = open(Faker::LoremPixel.image)
+      random_photos << x
+    end
+    p random_photos
+    l.photos = random_photos
+
+    l.save!
   end
 end

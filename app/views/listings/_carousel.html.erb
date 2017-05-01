@@ -2,15 +2,15 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= image_tag(listing.photos.first) if listing.photos? %>
+      <%= image_tag(listing.photos.first) %>
     </div>
-    <% if listing.photos? %>
+    <%# if listing.photos? %>
       <% listing.photos[1..-1].each do |x| %>
         <div class="item">
           <%= image_tag(x) %>
         </div>
       <% end %>
-    <% end %>
+    <%# end %>
   </div>
 
   <!-- Controls -->

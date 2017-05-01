@@ -4,7 +4,7 @@ class CreateListings < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.integer :user_id, null: false
       t.string :description
-      t.decimal :price, null: false
+      t.integer :price, null: false
       t.string :address, null: false
       t.integer :room_count, null: false
       t.integer :bed_count, null: false
