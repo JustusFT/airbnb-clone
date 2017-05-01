@@ -32,6 +32,7 @@ ActiveRecord::Base.transaction do
     listing['room_count'] = rand(0..5)
     listing['bed_count'] = rand(1..6)
     listing['guest_count'] = rand(1..10)
+    listing['room_type'] = rand(0..2)
 
     listing['address'] = Faker::Address.street_address
 

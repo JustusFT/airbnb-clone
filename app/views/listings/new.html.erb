@@ -36,6 +36,15 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.label :room_type %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.select :room_type, Listing.room_types.keys.map { |w| [w.humanize, w] } %>
+      </div>
+    </div>
+
     <div class="text-field row">
       <div class="col-sm-6">
         <%= f.label :room_count %>

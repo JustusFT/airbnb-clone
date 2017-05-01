@@ -7,6 +7,8 @@ class Listing < ApplicationRecord
   belongs_to :user
   has_many :bookings
 
+  enum room_type: [ :entire_home, :private_room, :shared_room ]
+
   mount_uploaders :photos, ListingPhotoUploader
 
   def one_photo_required

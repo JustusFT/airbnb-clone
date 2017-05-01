@@ -28,6 +28,6 @@ class ListingsController < ApplicationController
 
   private
   def strong_params
-    params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_count, :bed_count, :guest_count, :tag_list)
+    params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_type, :room_count, :bed_count, :guest_count, :tag_list)
   end
 end
