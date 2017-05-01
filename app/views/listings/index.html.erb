@@ -1,7 +1,17 @@
-<% query_params = request.query_parameters %>
-<% query_params[:page] ||= 1 %>
-<% listings = Listing.order(created_at: :desc) %>
-<% listings.page(query_params[:page]).each do |x| %>
+<div>
+  <h3>filters</h3>
+  <%= form_tag "/listings", method: "get" do %>
+    <%= label_tag :min_bed_count  %>
+    <%= number_field_tag :min_bed_count %>
+    <% Listing.room_types.each do |x| %>
+      <%= check_box_tag("room_types[#{x[1]}]") %>
+      <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
+    <% end %>
+    <%= text_field_tag :tags %>
+    <%= submit_tag "filter!"  %>
+  <% end %>
+</div>
+<% @listings.page(@query_params[:page]).each do |x| %>
   <div class="listing col-sm-6 col-lg-4">
     <%= render partial: "/listings/carousel", locals: { carousel_id: "listing-carousel-#{x.id}", listing: x } %>
     <h4 style="
@@ -13,6 +23,6 @@
   </div>
 <% end %>
 <div class="col-xs-12">
-  <%= link_to "Previous", controller: "listings", action: "index", page: query_params[:page].to_i - 1 unless listings.page(query_params[:page]).first_page? %>
-  <%= link_to "Next", controller: "listings", action: "index", page: query_params[:page].to_i + 1 unless listings.page(query_params[:page]).last_page? %>
+  <%= link_to "Previous", controller: "listings", action: "index", page: @query_params[:page].to_i - 1 unless @listings.page(@query_params[:page]).first_page? %>
+  <%= link_to "Next", controller: "listings", action: "index", page: @query_params[:page].to_i + 1 unless @listings.page(@query_params[:page]).last_page? %>
 </div>

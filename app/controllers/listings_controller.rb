@@ -1,13 +1,22 @@
 class ListingsController < ApplicationController
   before_action :require_login
 
+  def index
+    @query_params = request.query_parameters
+    @query_params.delete_if { |key, value| value == "" }
+    @query_params[:page] ||= 1
+    @query_params[:min_bed_count] ||= 0
+    @listings = Listing.order(created_at: :desc)
+    @listings = @listings.where(room_type: @query_params[:room_types].to_a.map { |x| x[0] }) unless @query_params[:room_types].nil?
+    @listings = @listings.where("bed_count >= ?", @query_params[:min_bed_count])
+  end
+
   def new
     @listing = Listing.new
     render :"listings/new"
   end
 
   def create
-    byebug
     @listing = current_user.listings.new(strong_params)
     @listing.photos = params[:listing][:photos]
 

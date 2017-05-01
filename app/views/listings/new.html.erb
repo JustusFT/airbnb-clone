@@ -41,7 +41,7 @@
         <%= f.label :room_type %>
       </div>
       <div class="col-sm-6">
-        <%= f.select :room_type, Listing.room_types.keys.map { |w| [w.humanize, w] } %>
+        <%= f.select :room_type, room_type_collection %>
       </div>
     </div>
 
