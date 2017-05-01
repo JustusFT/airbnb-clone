@@ -3,10 +3,17 @@
   <%= form_tag "/listings", method: "get" do %>
     <%= label_tag :min_bed_count  %>
     <%= number_field_tag :min_bed_count %>
+    <br />
     <% Listing.room_types.each do |x| %>
       <%= check_box_tag("room_types[#{x[1]}]") %>
       <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
     <% end %>
+    <br />
+    <% amenities_array.each do |x| %>
+      <%= check_box_tag("amenities[#{x}]") %>
+      <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
+    <% end %>
+    <br />
     <%= text_field_tag :tags %>
     <%= submit_tag "filter!"  %>
   <% end %>
