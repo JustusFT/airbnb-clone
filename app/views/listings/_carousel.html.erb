@@ -1,16 +1,43 @@
+<style>
+.carousel-inner {
+  height: 100%;
+}
+
+.item {
+  width: 100%;
+  padding-bottom: 75%;
+  position: relative;
+}
+
+.item-image {
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.item img {
+  display: none;
+}
+</style>
 <%= raw "<div id='#{carousel_id}' class='carousel slide' data-ride='carousel'>" %>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= image_tag(listing.photos.first) %>
+      <%= raw "<div class='item-image' style='background-image:url(#{listing.photos.first.url})'>" %>
+        <%= image_tag(listing.photos.first) %>
+      </div>
     </div>
-    <%# if listing.photos? %>
-      <% listing.photos[1..-1].each do |x| %>
-        <div class="item">
+    <% listing.photos[1..-1].each do |x| %>
+      <div class="item">
+        <%= raw "<div class='item-image' style='background-image:url(#{x.url})'>" %>
           <%= image_tag(x) %>
         </div>
-      <% end %>
-    <%# end %>
+      </div>
+    <% end %>
   </div>
 
   <!-- Controls -->
