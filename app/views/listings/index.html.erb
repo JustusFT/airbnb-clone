@@ -1,22 +1,27 @@
 <div>
-  <h3>filters</h3>
-  <%= form_tag "/listings", method: "get" do %>
-    <%= label_tag :min_bed_count  %>
-    <%= number_field_tag :min_bed_count %>
-    <br />
-    <% Listing.room_types.each do |x| %>
-      <%= check_box_tag("room_types[#{x[1]}]") %>
-      <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
+  <h3><a href="#filters" data-toggle="collapse">Show Filters</a></h3>
+  <div id="filters" class="collapse">
+    <%= form_tag "/listings", method: "get" do %>
+      <%= label_tag :min_bed_count  %>
+      <%= number_field_tag :min_bed_count %>
+      <br />
+      <h5>Room types:</h5>
+      <% Listing.room_types.each do |x| %>
+        <%= check_box_tag("room_types[#{x[1]}]") %>
+        <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
+      <% end %>
+      <br />
+      <h5>Amenities:</h5>
+      <% amenities_array.each do |x| %>
+        <%= check_box_tag("amenities[#{x}]") %>
+        <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
+      <% end %>
+      <br />
+      <%= label_tag :tags %>
+      <%= text_field_tag :tags %>
+      <%= submit_tag "filter!", class: "btn btn-primary" %>
     <% end %>
-    <br />
-    <% amenities_array.each do |x| %>
-      <%= check_box_tag("amenities[#{x}]") %>
-      <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
-    <% end %>
-    <br />
-    <%= text_field_tag :tags %>
-    <%= submit_tag "filter!"  %>
-  <% end %>
+  </div>
 </div>
 <% @listings.page(@query_params[:page]).each do |x| %>
   <div class="listing col-sm-6 col-lg-4">
