@@ -14,3 +14,7 @@
 <% end %>
 
 <%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: @listing.id %>
+
+<h3>The host</h3>
+<h5><%= @listing.user.full_name %></h5>
+<%= image_tag(@listing.user.avatar_url) if @listing.user.avatar? %>
