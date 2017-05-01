@@ -7,7 +7,9 @@ class ListingsController < ApplicationController
   end
 
   def create
+    byebug
     @listing = current_user.listings.new(strong_params)
+    @listing.photos = params[:listing][:photos]
 
     params[:amenities].each do |k, v|
       @listing.amenity_list.add(k)
@@ -21,7 +23,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    # byebug
+    @listing = Listing.find(params[:id])
   end
 
   private

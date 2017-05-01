@@ -4,4 +4,6 @@ class Listing < ApplicationRecord
   acts_as_taggable_on :amenities
   belongs_to :user
   has_many :bookings
+
+  mount_uploaders :photos, ListingPhotoUploader
 end

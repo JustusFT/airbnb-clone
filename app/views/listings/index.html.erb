@@ -3,7 +3,7 @@
 <% listings = Listing.order(created_at: :desc) %>
 <% listings.page(query_params[:page]).each do |x| %>
   <div class="listing col-sm-6 col-lg-4">
-    <img src="http://placehold.it/640x480" alt="" class="img-responsive">
+    <%= render partial: "/listings/carousel", locals: { carousel_id: "listing-carousel-#{x.id}", listing: x } %>
     <h4 style="
       white-space:nowrap;
       overflow:hidden;
