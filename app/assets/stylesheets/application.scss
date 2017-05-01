@@ -33,3 +33,28 @@
   top: 8px;
   margin-left: 16px;
 }
+
+// listing carousel
+.carousel-inner {
+  height: 100%;
+}
+
+.item {
+  width: 100%;
+  padding-bottom: 75%;
+  position: relative;
+}
+
+.item-image {
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.item img {
+  display: none;
+}

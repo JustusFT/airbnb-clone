@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :require_login, only: [:new, :create]
+  
   def new
     @listing = Listing.find(params[:listing_id])
     @booking = Booking.new

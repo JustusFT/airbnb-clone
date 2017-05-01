@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, only: [:new, :create]
 
   def index
     @query_params = request.query_parameters

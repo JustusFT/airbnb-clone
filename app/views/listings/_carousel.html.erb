@@ -1,28 +1,3 @@
-<style>
-.carousel-inner {
-  height: 100%;
-}
-
-.item {
-  width: 100%;
-  padding-bottom: 75%;
-  position: relative;
-}
-
-.item-image {
-  background-size: cover;
-  background-position: center center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.item img {
-  display: none;
-}
-</style>
 <%= raw "<div id='#{carousel_id}' class='carousel slide' data-ride='carousel'>" %>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -41,14 +16,16 @@
   </div>
 
   <!-- Controls -->
-  <%= raw "<a class='left carousel-control' href='##{carousel_id}' role='button' data-slide='prev'>" %>
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <%= raw "<a class='right carousel-control' href='##{carousel_id}' role='button' data-slide='next'>" %>
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+  <% if listing.photos.count > 1 %>
+    <%= raw "<a class='left carousel-control' href='##{carousel_id}' role='button' data-slide='prev'>" %>
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <%= raw "<a class='right carousel-control' href='##{carousel_id}' role='button' data-slide='next'>" %>
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  <% end %>
 </div>
 <script>
   $(function() {
