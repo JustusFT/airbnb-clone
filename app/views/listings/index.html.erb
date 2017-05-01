@@ -4,19 +4,20 @@
     <%= form_tag "/listings", method: "get" do %>
       <%= label_tag :min_bed_count  %>
       <%= number_field_tag :min_bed_count %>
-      <br />
       <h5>Room types:</h5>
-      <% Listing.room_types.each do |x| %>
-        <%= check_box_tag("room_types[#{x[1]}]") %>
-        <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
-      <% end %>
-      <br />
+      <div class="checkboxradio">
+        <% Listing.room_types.each do |x| %>
+          <%= check_box_tag("room_types[#{x[1]}]") %>
+          <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
+        <% end %>
+      </div>
       <h5>Amenities:</h5>
-      <% amenities_array.each do |x| %>
-        <%= check_box_tag("amenities[#{x}]") %>
-        <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
-      <% end %>
-      <br />
+      <div class="checkboxradio">
+        <% amenities_array.each do |x| %>
+          <%= check_box_tag("amenities[#{x}]") %>
+          <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
+        <% end %>
+      </div>
       <%= label_tag :tags %>
       <%= text_field_tag :tags %>
       <%= submit_tag "filter!", class: "btn btn-primary" %>

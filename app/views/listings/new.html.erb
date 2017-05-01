@@ -82,7 +82,7 @@
       </div>
     </div>
 
-    <fieldset id="fieldset-amenities">
+    <fieldset id="fieldset-amenities" class="checkboxradio">
       <legend>Amenities: </legend>
       <%= form_tag do %>
         <% amenities_array.each do |x| %>
@@ -100,9 +100,3 @@
     </div>
   </div>
 <% end %>
-
-<script>
-  $("#fieldset-amenities > input[type=checkbox]").checkboxradio({
-    icon: false
-  });
-</script>
