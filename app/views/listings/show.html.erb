@@ -1,11 +1,10 @@
-<div id="listing-header" style="background-size: cover; background-position: center center; height: 480px; background-image: url('http://placehold.it/640x480')"></div>
-<% listing = Listing.find(params[:id]) %>
-<h1><%= listing.name %></h1>
-<p><%= listing.description %></p>
-<p>$<%= listing.price %></p>
+<%= render partial: '/listings/carousel', locals: { carousel_id: "listing_photos", listing: @listing } %>
+<h1><%= @listing.name %></h1>
+<p><%= @listing.description %></p>
+<p>$<%= @listing.price %></p>
 <h3>Amenities</h3>
 <% amenities = ["heating", "kitchen", "tv", "wireless_internet", "air_conditioning", "breakfast", "buzzer/wireless_intercom", "doorman", "dryer", "family/kid_friendly", "hair_dryer", "hangers", "indoor_fireplace", "iron", "laptop_friendly_workspace", "lock_on_bedroom_door", "self_check-in", "shampoo", "washer"] %>
-<% listing_amenities = listing.amenities.pluck(:name) %>
+<% listing_amenities = @listing.amenities.pluck(:name) %>
 <% amenities.each do |x| %>
   <% if listing_amenities.include?(x) %>
     <div><%= x.titleize %></div>
@@ -14,4 +13,8 @@
   <% end %>
 <% end %>
 
-<%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: listing.id %>
+<%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: @listing.id %>
+
+<h3>The host</h3>
+<h5><%= @listing.user.full_name %></h5>
+<%= image_tag(@listing.user.avatar_url) if @listing.user.avatar? %>
