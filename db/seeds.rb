@@ -16,7 +16,9 @@ ActiveRecord::Base.transaction do
     user['full_name'] = Faker::Name.first_name
     user['email'] = Faker::Internet.email
     u = User.new(user)
-    u.avatar = open(Faker::Avatar.image)
+    i = MiniMagick::Image.open(Faker::Avatar.image)
+    i.resize("128x128")
+    u.avatar = i
     u.save!
   end
 end
