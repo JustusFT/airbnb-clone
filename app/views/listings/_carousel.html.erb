@@ -2,15 +2,11 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= raw "<div class='item-image' style='background-image:url(#{listing_images.first.url})'>" %>
-        <%= image_tag(listing_images.first) %>
-      </div>
+      <%= image_tag(listing_images.first) %>
     </div>
     <% listing_images[1..-1].each do |x| %>
       <div class="item">
-        <%= raw "<div class='item-image' style='background-image:url(#{x.url})'>" %>
-          <%= image_tag(x) %>
-        </div>
+        <%= image_tag(x) %>
       </div>
     <% end %>
   </div>

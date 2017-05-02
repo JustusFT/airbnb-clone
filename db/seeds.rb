@@ -52,7 +52,11 @@ ActiveRecord::Base.transaction do
       url = Faker::LoremPixel.image
       i = MiniMagick::Image.open(url)
       t = MiniMagick::Image.open(url)
-      t.resize("640x480")
+
+      # resize and crop image to 640x480, see listings_controller#create for info
+      t.resize("640x480^")
+      t.crop("640x480+#{(t.width - 640) / 2}+#{(t.height - 480) / 2}!")
+
       random_photos << i
       thumbnails << t
     end
