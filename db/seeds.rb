@@ -12,7 +12,7 @@ user['password'] = 'asdf'
 user['password_confirmation'] = 'asdf'
 
 ActiveRecord::Base.transaction do
-  2.times do
+  1.times do
     user['full_name'] = Faker::Name.first_name
     user['email'] = Faker::Internet.email
     u = User.new(user)
@@ -29,7 +29,7 @@ uids = []
 User.all.each { |u| uids << u.id }
 
 ActiveRecord::Base.transaction do
-  2.times do
+  1.times do
     listing['name'] = Faker::App.name
     listing['room_count'] = rand(0..5)
     listing['bed_count'] = rand(1..6)
@@ -46,12 +46,19 @@ ActiveRecord::Base.transaction do
     l = Listing.new(listing)
 
     random_photos = []
-    3.times do
-      x = open(Faker::LoremPixel.image)
-      random_photos << x
+    thumbnails = []
+    2.times do
+      # the thumbnail and images don't match. whatever, this is just for testing purposes anyway
+      url = Faker::LoremPixel.image
+      i = MiniMagick::Image.open(url)
+      t = MiniMagick::Image.open(url)
+      t.resize("640x480")
+      random_photos << i
+      thumbnails << t
     end
     p random_photos
     l.photos = random_photos
+    l.thumbnails = thumbnails
 
     l.save!
   end

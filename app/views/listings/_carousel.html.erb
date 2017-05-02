@@ -2,11 +2,11 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= raw "<div class='item-image' style='background-image:url(#{listing.photos.first.url})'>" %>
-        <%= image_tag(listing.photos.first) %>
+      <%= raw "<div class='item-image' style='background-image:url(#{listing_images.first.url})'>" %>
+        <%= image_tag(listing_images.first) %>
       </div>
     </div>
-    <% listing.photos[1..-1].each do |x| %>
+    <% listing_images[1..-1].each do |x| %>
       <div class="item">
         <%= raw "<div class='item-image' style='background-image:url(#{x.url})'>" %>
           <%= image_tag(x) %>
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Controls -->
-  <% if listing.photos.count > 1 %>
+  <% if listing_images.count > 1 %>
     <%= raw "<a class='left carousel-control' href='##{carousel_id}' role='button' data-slide='prev'>" %>
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>

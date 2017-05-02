@@ -1,4 +1,4 @@
-<%= render partial: '/listings/carousel', locals: { carousel_id: "listing_photos", listing: @listing } %>
+<%= render partial: '/listings/carousel', locals: { carousel_id: "listing_photos", listing: @listing, listing_images: @listing.photos } %>
 <h1><%= @listing.name %></h1>
 <p><%= @listing.description %></p>
 <p>$<%= @listing.price %></p>
