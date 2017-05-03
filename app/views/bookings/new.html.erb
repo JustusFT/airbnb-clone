@@ -1,3 +1,6 @@
+<%# data-attributes to be used in listing.js %>
+<%= raw "<div id='data-attributes' data-taken-dates='#{raw @taken_dates}' data-listing-price='#{raw @listing.price}'></div>" %>
+
 <div id="total-price"></div>
 <%= form_for ([@listing, @booking]) do |f| %>
   <div style="display: inline-block">
@@ -24,39 +27,3 @@
     </div>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  $(document).on("turbolinks:load ready", function() {
-    var current_date = new Date;
-    // convert array of taken dates above to JS
-    var takenDates = <%= raw @taken_dates %>;
-    var listingPrice = <%= raw @listing.price %>;
-
-    debugger;
-
-    var checkInDate = function() {
-      return $("#check_in").datepicker("getDate");
-    }
-    var checkOutDate = function() {
-      return $("#check_out").datepicker("getDate");
-    }
-
-    console.log(listingPrice);
-
-    $(".booking-datepicker").datepicker( "destroy" );
-    $(".booking-datepicker").datepicker({
-      dateFormat: "yy-mm-dd",
-      minDate: 0,
-      beforeShowDay: function(date) {
-        var string = $.datepicker.formatDate('yy-mm-dd', date);
-        return [takenDates.indexOf(string) === -1];
-      }
-    }).on("change", function() {
-      // display pricing of date range
-      var date_difference = (checkOutDate() - checkInDate()) / (1000 * 3600 * 24);
-      if (checkInDate() === null || checkOutDate() === null) return;
-      $("#total-price").html("$" + listingPrice * date_difference);
-    });
-
-  });
-</script>

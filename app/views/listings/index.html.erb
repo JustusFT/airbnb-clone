@@ -22,9 +22,9 @@
       <%= text_field_tag :tags %>
       <h5>Date range</h5>
       <%= label_tag :check_in %>
-      <%= date_field_tag :check_in, nil, type: 'date', id: 'check_in', class: 'datepicker' %>
+      <%= date_field_tag :check_in, nil, type: 'date', id: 'check_in', class: '.filter-datepicker' %>
       <%= label_tag :check_out %>
-      <%= date_field_tag :check_out, nil, type: 'date', id: 'check_out', class: 'datepicker' %>
+      <%= date_field_tag :check_out, nil, type: 'date', id: 'check_out', class: '.filter-datepicker' %>
       <%= submit_tag "filter!", class: "btn btn-primary" %>
     <% end %>
   </div>
