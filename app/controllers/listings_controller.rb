@@ -36,6 +36,28 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
+  def edit
+    @listing = Listing.find(params[:id])
+    unless @listing.user_id == current_user.id
+      redirect_to @listing
+    end
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    @listing.update_attributes(strong_params)
+
+    @listing.amenity_list = []
+    params[:amenities].each do |k, v|
+      @listing.amenity_list.add(k)
+    end
+
+    unless @listing.save
+      flash[:notice] = "Error updating???"
+    end
+    redirect_to @listing
+  end
+
   private
   def strong_params
     params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_type, :room_count, :bed_count, :guest_count, :tag_list, photos: [])
