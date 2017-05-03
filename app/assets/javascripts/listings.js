@@ -17,7 +17,11 @@ $(document).on("turbolinks:load ready", function() {
 
   // ensure that check in is before check out
   $("#check_in").on("change", function() {
-    $("#check_out").datepicker("option", "minDate", $(this).datepicker("getDate"));
+    if ($(this).datepicker("getDate") === null) {
+      $("#check_out").datepicker("option", "minDate", 0);
+    } else {
+      $("#check_out").datepicker("option", "minDate", $(this).datepicker("getDate"));
+    }
   });
 
   $("#check_out").on("change", function() {
