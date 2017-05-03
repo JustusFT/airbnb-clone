@@ -1,3 +1,7 @@
+ <% content_for :body do %>
+   <body data-no-turbolink="true">
+ <% end %>
+
 <%# data-attributes to be used in listing.js %>
 <%= raw "<div id='data-attributes' data-taken-dates='#{raw @taken_dates}' data-listing-price='#{raw @listing.price}'></div>" %>
 

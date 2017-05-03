@@ -41,7 +41,6 @@ $(document).on("turbolinks:load ready", function() {
   }
 
   // destroy previous datePicker setup, so that you can reset the valid dates
-  $(".booking-datepicker").datepicker( "destroy" );
   $(".booking-datepicker").datepicker({
     dateFormat: "yy-mm-dd",
     minDate: 0,
