@@ -3,6 +3,10 @@ $(document).on("turbolinks:load ready", function() {
     icon: false
   });
 
+  $(".carousel").carousel({
+    interval: false
+  });
+
   //
   // INDEX
   //
