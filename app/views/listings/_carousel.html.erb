@@ -2,15 +2,11 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= raw "<div class='item-image' style='background-image:url(#{listing.photos.first.url})'>" %>
-        <%= image_tag(listing.photos.first) %>
-      </div>
+      <%= image_tag(listing.photos.first.thumb) %>
     </div>
     <% listing.photos[1..-1].each do |x| %>
       <div class="item">
-        <%= raw "<div class='item-image' style='background-image:url(#{x.url})'>" %>
-          <%= image_tag(x) %>
-        </div>
+        <%= image_tag(x.thumb) %>
       </div>
     <% end %>
   </div>
@@ -27,10 +23,3 @@
     </a>
   <% end %>
 </div>
-<script>
-  $(function() {
-    $('.carousel').carousel({
-      interval: false
-    });
-  });
-</script>

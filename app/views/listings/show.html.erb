@@ -1,4 +1,32 @@
-<%= render partial: '/listings/carousel', locals: { carousel_id: "listing_photos", listing: @listing } %>
+<% result = [] %>
+<% @listing.photos.each do |x| %>
+  <% result << {src: x.url} %>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    // Example with multiple objects
+    $('#listing-header-image').magnificPopup({
+      items: <%= raw result.to_json %>,
+      gallery: {
+        enabled: true
+      },
+      type: 'image' // this is default type
+    });
+  });
+</script>
+
+<style>
+#listing-header-image {
+  height: 480px;
+  background-size: cover;
+  background-position: center center;
+}
+</style>
+<%= raw "<div id='listing-header-image', style='background-image: url(#{@listing.photos.first})'></div>" %>
+
+<%= link_to "Edit Listing", action: "edit" if @listing.user_id == current_user.id %>
+
 <h1><%= @listing.name %></h1>
 <p><%= @listing.description %></p>
 <p>$<%= @listing.price %></p>
