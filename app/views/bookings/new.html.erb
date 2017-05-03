@@ -8,27 +8,45 @@
   $(document).ready(function() {
     var current_date = new Date;
     // convert array of taken dates above to JS
-    var takenDates = <%= raw @taken_dates %>
+    var takenDates = <%= raw @taken_dates %>;
+    var listingPrice = <%= raw @listing.price %>;
+
+    var checkInDate = function() {
+      return $("#check_in").datepicker("getDate");
+    }
+    var checkOutDate = function() {
+      return $("#check_out").datepicker("getDate");
+    }
+
+    console.log(listingPrice);
+
     $(".datepicker").datepicker({
       dateFormat: "yy-mm-dd",
       beforeShowDay: function(date) {
         var string = $.datepicker.formatDate('yy-mm-dd', date);
         //disable past dates
-        if(date < current_date) return [false]
+        if(date < current_date) return [false];
         //disable taken booking dates
-        return [takenDates.indexOf(string) === -1]
+        return [takenDates.indexOf(string) === -1];
       }
+    }).on("change", function() {
+      // display pricing of date range
+      var date_difference = (checkOutDate() - checkInDate()) / (1000 * 3600 * 24);
+      if (checkInDate() === null || checkOutDate() === null) return;
+      $("#total-price").html("$" + listingPrice * date_difference);
     });
+
     //ensure that check in is before check out
     $("#check_in").on("change", function() {
-      $("#check_out").datepicker("option", "minDate", $(this).datepicker("getDate"));
+      $("#check_out").datepicker("option", "minDate", checkInDate());
     });
     $("#check_out").on("change", function() {
-      $("#check_in").datepicker("option", "maxDate", $(this).datepicker("getDate"));
+      $("#check_in").datepicker("option", "maxDate", checkOutDate());
     });
+
   });
 </script>
-
+<div id="total-price"></div>
 <%= form_for ([@listing, @booking]) do |f| %>
   <div style="display: inline-block">
     <div class="text-field row">
