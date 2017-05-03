@@ -10,7 +10,6 @@ class Listing < ApplicationRecord
   enum room_type: [ :entire_home, :private_room, :shared_room ]
 
   mount_uploaders :photos, ListingPhotoUploader
-  mount_uploaders :thumbnails, ListingThumbnailUploader
 
   def one_photo_required
     unless self.photos?

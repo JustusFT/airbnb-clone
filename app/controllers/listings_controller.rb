@@ -16,20 +16,10 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
-    render :"listings/new"
   end
 
   def create
     @listing = current_user.listings.new(strong_params)
-    @listing.photos = params[:listing][:photos]
-
-    @listing.thumbnails = params[:listing][:photos].map { |x|
-      img = MiniMagick::Image.new(x.path)
-      # fill-resize, shirnk until image width or height is met
-      img.resize("640x480^")
-      # center crop so that 640x480 is met
-      img.crop("640x480+#{(img.width - 640) / 2}+#{(img.height - 480) / 2}!")
-    }
 
     params[:amenities].each do |k, v|
       @listing.amenity_list.add(k)
@@ -48,6 +38,6 @@ class ListingsController < ApplicationController
 
   private
   def strong_params
-    params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_type, :room_count, :bed_count, :guest_count, :tag_list)
+    params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_type, :room_count, :bed_count, :guest_count, :tag_list, photos: [])
   end
 end

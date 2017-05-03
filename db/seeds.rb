@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # Seed Users
 
+# comment out the extension whitelist in listings uploader so image seeding would work
+
 user = {}
 user['password'] = 'asdf'
 user['password_confirmation'] = 'asdf'
@@ -46,23 +48,13 @@ ActiveRecord::Base.transaction do
     l = Listing.new(listing)
 
     random_photos = []
-    thumbnails = []
-    2.times do
-      # the thumbnail and images don't match. whatever, this is just for testing purposes anyway
-      url = Faker::LoremPixel.image
+    3.times do
+      url = Faker::LoremPixel.image("1280x720", false, "city")
       i = MiniMagick::Image.open(url)
-      t = MiniMagick::Image.open(url)
-
-      # resize and crop image to 640x480, see listings_controller#create for info
-      t.resize("640x480^")
-      t.crop("640x480+#{(t.width - 640) / 2}+#{(t.height - 480) / 2}!")
-
       random_photos << i
-      thumbnails << t
     end
     p random_photos
     l.photos = random_photos
-    l.thumbnails = thumbnails
 
     l.save!
   end

@@ -26,7 +26,7 @@
 </div>
 <% @listings.page(@query_params[:page]).each do |x| %>
   <div class="listing col-sm-6 col-lg-4">
-    <%= render partial: "/listings/carousel", locals: { carousel_id: "listing-carousel-#{x.id}", listing: x, listing_images: x.thumbnails } %>
+    <%= render partial: "/listings/carousel", locals: { carousel_id: "listing-carousel-#{x.id}", listing: x } %>
     <h4 style="
       white-space:nowrap;
       overflow:hidden;
