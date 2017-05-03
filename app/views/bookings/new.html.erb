@@ -1,15 +1,38 @@
-<% @taken_dates = [] %>
-<% Listing.find(@listing.id).bookings.each do |x| %>
-  <% x.check_in.upto(x.check_out) do |x| %>
-    <% @taken_dates << x.to_s %>
-  <% end %>
+<div id="total-price"></div>
+<%= form_for ([@listing, @booking]) do |f| %>
+  <div style="display: inline-block">
+    <div class="text-field row">
+      <div class="col-sm-6">
+        <%= f.label :check_in %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.date_field :check_in, type: 'date', id: 'check_in', class: 'booking-datepicker' %>
+      </div>
+    </div>
+
+    <div class="text-field row">
+      <div class="col-sm-6">
+        <%= f.label :check_out %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.date_field :check_out, type: 'date', id: 'check_out', class: 'booking-datepicker' %>
+      </div>
+    </div>
+
+    <div class="submit-field">
+      <%= f.submit %>
+    </div>
+  </div>
 <% end %>
+
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).on("turbolinks:load ready", function() {
     var current_date = new Date;
     // convert array of taken dates above to JS
     var takenDates = <%= raw @taken_dates %>;
     var listingPrice = <%= raw @listing.price %>;
+
+    debugger;
 
     var checkInDate = function() {
       return $("#check_in").datepicker("getDate");
@@ -20,13 +43,12 @@
 
     console.log(listingPrice);
 
-    $(".datepicker").datepicker({
+    $(".booking-datepicker").datepicker( "destroy" );
+    $(".booking-datepicker").datepicker({
       dateFormat: "yy-mm-dd",
+      minDate: 0,
       beforeShowDay: function(date) {
         var string = $.datepicker.formatDate('yy-mm-dd', date);
-        //disable past dates
-        if(date < current_date) return [false];
-        //disable taken booking dates
         return [takenDates.indexOf(string) === -1];
       }
     }).on("change", function() {
@@ -36,39 +58,5 @@
       $("#total-price").html("$" + listingPrice * date_difference);
     });
 
-    //ensure that check in is before check out
-    $("#check_in").on("change", function() {
-      $("#check_out").datepicker("option", "minDate", checkInDate());
-    });
-    $("#check_out").on("change", function() {
-      $("#check_in").datepicker("option", "maxDate", checkOutDate());
-    });
-
   });
 </script>
-<div id="total-price"></div>
-<%= form_for ([@listing, @booking]) do |f| %>
-  <div style="display: inline-block">
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :check_in %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.date_field :check_in, type: 'date', id: 'check_in', class: 'datepicker' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :check_out %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.date_field :check_out, type: 'date', id: 'check_out', class: 'datepicker' %>
-      </div>
-    </div>
-
-    <div class="submit-field">
-      <%= f.submit %>
-    </div>
-  </div>
-<% end %>

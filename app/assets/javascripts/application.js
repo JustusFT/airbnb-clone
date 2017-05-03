@@ -17,9 +17,3 @@
 //= require bootstrap
 //= require magnific-popup
 //= require_tree .
-
-$(document).ready(function() {
-  $(".checkboxradio input[type=checkbox]").checkboxradio({
-    icon: false
-  });
-});
