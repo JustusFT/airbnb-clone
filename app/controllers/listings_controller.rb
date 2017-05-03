@@ -58,6 +58,15 @@ class ListingsController < ApplicationController
     redirect_to @listing
   end
 
+  def destroy
+    @listing = Listing.find(params[:id])
+    unless @listing.destroy
+      flash[:notice] = "Error deleting?"
+      redirect_to @listing
+    end
+    redirect_to "/listings"
+  end
+
   private
   def strong_params
     params.require(:listing).permit(:user_id, :name, :description, :price, :address, :room_type, :room_count, :bed_count, :guest_count, :tag_list, photos: [])
