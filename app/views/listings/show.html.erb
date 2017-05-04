@@ -25,7 +25,7 @@
 </style>
 <%= raw "<div id='listing-header-image', style='background-image: url(#{@listing.photos.first})'></div>" %>
 
-<%= link_to "Edit Listing", action: "edit" if @listing.user_id == current_user.id %>
+<%= link_to "Edit Listing", action: "edit" if signed_in? && @listing.user_id == current_user.id %>
 
 <h1><%= @listing.name %></h1>
 <p><%= @listing.description %></p>
