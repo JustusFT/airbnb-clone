@@ -17,8 +17,10 @@ class BookingsController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     @booking = @listing.bookings.new(strong_params)
     @booking.user_id = current_user.id
-    if @booking.save
-      redirect_to [@listing, @booking]
+    if @booking.valid?
+      # redirect_to [@listing, @booking]
+      session[:booking] = @booking
+      redirect_to "/braintree/new"
     else
       flash[:notice] = @booking.errors.messages
       redirect_to @listing
