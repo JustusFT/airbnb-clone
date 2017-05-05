@@ -12,6 +12,7 @@ class ListingsController < ApplicationController
     @listings = @listings.tagged_with(@query_params[:tags], any: true) unless @query_params[:tags].nil?
     @listings = @listings.tagged_with(@query_params[:amenities].to_a.map { |x| x[0] }, on: :amenities, any: true) unless @query_params[:amenities].nil?
     @listings = @listings.includes(:bookings).where.not("listings.id IN (SELECT listing_id FROM bookings) AND bookings.check_in <= ? AND bookings.check_out >= ?", @query_params[:check_out], @query_params[:check_in]).references(:bookings) unless @query_params[:check_in].nil? || @query_params[:check_out].nil?
+    @listings = @listings.search(@query_params[:search]) unless @query_params[:search].nil?
   end
 
   def new
