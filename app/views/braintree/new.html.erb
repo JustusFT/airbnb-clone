@@ -1,7 +1,8 @@
-<h1>Braintree#new</h1>
-<p>Find me in app/views/braintree/new.html.erb</p>
+<h1>Confirm Purchase</h1>
 
-<%= "Booking? #{!session[:booking].nil?}" %>
+<h3><%= @listing.name %></h3>
+<h5><%= "$#{@price} (#{@booking.check_in} - #{@booking.check_out})" %></h5>
+
 <div class="demo-frame">
 
   <%= form_for :checkout_form, url: braintree_checkout_path, html: { id: "cardForm"} do |form| %>
