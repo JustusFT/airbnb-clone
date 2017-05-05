@@ -25,7 +25,7 @@
 </style>
 <%= raw "<div id='listing-header-image', style='background-image: url(#{@listing.photos.first})'></div>" %>
 
-<%= link_to "Edit Listing", action: "edit" if @listing.user_id == current_user.id %>
+<%= link_to "Edit Listing", action: "edit" if signed_in? && @listing.user_id == current_user.id %>
 
 <h1><%= @listing.name %></h1>
 <p><%= @listing.description %></p>
@@ -41,7 +41,7 @@
   <% end %>
 <% end %>
 
-<%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: @listing.id %>
+<%= link_to "BOOK NOW", {controller: "bookings", action: "new", listing_id: @listing.id}, class: "btn btn-default" %>
 
 <h3>The host</h3>
 <h5><%= @listing.user.full_name %></h5>

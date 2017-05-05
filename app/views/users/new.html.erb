@@ -1,15 +1,13 @@
 <div id="clearance" class="sign-up">
   <h2><%= t(".title") %></h2>
 
-  <%= form_for @user do |form| %>
+  <%= form_for @user, html: {class: "form-horizontal"} do |form| %>
     <%= render partial: '/users/form', object: form %>
 
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-
-    <div class="other-links">
-      <%= link_to t(".sign_in"), sign_in_path %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= form.submit class: "btn btn-default"%>
+      </div>
     </div>
   <% end %>
 </div>
