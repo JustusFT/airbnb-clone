@@ -1,6 +1,8 @@
 class Listing < ApplicationRecord
   include PgSearch
-  pg_search_scope :search, against: [:name, :description, :address]
+  pg_search_scope :search,
+    against: [:name, :description, :address],
+    associated_against: {tags: [:name]}
 
   validates_presence_of :user_id, :price, :address, :room_count, :bed_count, :guest_count
   validate :one_photo_required
