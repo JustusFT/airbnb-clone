@@ -22,6 +22,9 @@ class BraintreeController < ApplicationController
 
     if result.success?
       @booking.save!
+
+      ReservationJob.perform_later(current_user)
+
       redirect_to :root, :flash => { :success => "Transaction successful!" }
     else
       redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }
