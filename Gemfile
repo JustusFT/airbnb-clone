@@ -19,6 +19,8 @@ gem "mini_magick"
 gem 'magnific-popup-rails', '~> 1.1.0'
 gem 'braintree'
 gem 'sidekiq'
+gem 'rails_12factor'
+gem 'unicorn'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
