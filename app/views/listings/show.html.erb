@@ -41,7 +41,7 @@
   <% end %>
 <% end %>
 
-<%= link_to "BOOK NOW", controller: "bookings", action: "new", listing_id: @listing.id %>
+<%= link_to "BOOK NOW", {controller: "bookings", action: "new", listing_id: @listing.id}, class: "btn btn-default" %>
 
 <h3>The host</h3>
 <h5><%= @listing.user.full_name %></h5>

@@ -1,37 +1,27 @@
-<div style="display:inline-block">
-  <div class="text-field row ">
-    <div class="col-sm-6">
-      <%= form.label :email %>
-    </div>
-    <div class="col-sm-6">
-      <%= form.text_field :email, type: 'email' %>
-    </div>
+<div class="form-group">
+  <%= form.label :email, nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= form.text_field :email, type: 'email', class: "form-control" %>
   </div>
+</div>
 
-  <div class="text-field row">
-    <div class="col-sm-6">
-      <%= form.label :full_name %>
-    </div>
-    <div class="col-sm-6">
-      <%= form.text_field :full_name, type: 'text' %>
-    </div>
+<div class="form-group">
+  <%= form.label :full_name, nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= form.text_field :full_name, class: "form-control" %>
   </div>
+</div>
 
-  <div class="password-field row">
-    <div class="col-sm-6">
-      <%= form.label :password %>
-    </div>
-    <div class="col-sm-6">
-      <%= form.password_field :password %>
-    </div>
+<div class="form-group">
+  <%= form.label :password, nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= form.password_field :password, class: "form-control" %>
   </div>
+</div>
 
-  <div class="password-confirmation-field row">
-    <div class="col-sm-6">
-      <%= form.label :password_confirmation %>
-    </div>
-    <div class="col-sm-6">
-      <%= form.password_field :password_confirmation %>
-    </div>
+<div class="form-group">
+  <%= form.label :password_confirmation, nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
 </div>

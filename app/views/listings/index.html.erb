@@ -1,9 +1,10 @@
-<div>
+<div style="margin-top: -16px; padding-bottom: 16px">
   <h3><a href="#filters" data-toggle="collapse">Show Filters</a></h3>
   <div id="filters" class="collapse">
     <%= form_tag "/listings", method: "get" do %>
       <%= label_tag :min_bed_count  %>
       <%= number_field_tag :min_bed_count %>
+      <hr>
       <h5>Room types:</h5>
       <div class="checkboxradio">
         <% Listing.room_types.each do |x| %>
@@ -11,15 +12,18 @@
           <%= label_tag("room_types[#{x[1]}]", x[0].humanize) %>
         <% end %>
       </div>
+      <hr>
       <h5>Amenities:</h5>
       <div class="checkboxradio">
         <% amenities_array.each do |x| %>
-          <%= check_box_tag("amenities[#{x}]") %>
           <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
+          <%= check_box_tag("amenities[#{x}]") %>
         <% end %>
       </div>
+      <hr>
       <%= label_tag :tags %>
       <%= text_field_tag :tags %>
+      <hr>
       <h5>Date range</h5>
       <%= label_tag :check_in %>
       <%= date_field_tag :check_in, nil, type: 'date', id: 'check_in', class: 'filter-datepicker' %>

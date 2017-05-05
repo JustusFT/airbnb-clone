@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   end
   # resources :bookings
 
-  root "pages#index"
+  root "pages#homepage"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 end
