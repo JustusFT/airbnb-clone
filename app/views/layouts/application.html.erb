@@ -6,45 +6,63 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <link href="https://fonts.googleapis.com/css?family=Khula|Noto+Sans|Open+Sans" rel="stylesheet">
   </head>
 
   <body>
-    <div id="main-container" class="container-fluid">
-      <div id="navbar">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
-                COLLAPSE
-              </button>
-              <a class="navbar-brand" href="#">Not AirBnB</a>
-            </div>
-            <div class="collapse navbar-collapse" id="main-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/listings">Listings</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <% if signed_in? %>
-                  <li><%= link_to current_user.full_name, "/users/#{current_user.id}" %></li>
-                  <li><%= image_tag(current_user.avatar_url, {class: "profile-pic"}) if current_user.avatar? %></li>
-                  <li><%= button_to 'Sign out', sign_out_path, method: :delete, id: "sign-out" %></li>
-                <% else %>
-                  <li><%= link_to 'Sign in', sign_in_path %></li>
-                  <li><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
 
+    <!-- Modal Sign In -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Sign in</h4>
+          </div>
+          <div class="modal-body">
+            <%= render partial: '/sessions/form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="navbar">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+              COLLAPSE
+            </button>
+            <a class="navbar-brand" href="#">Not AirBnB</a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/listings">Listings</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if signed_in? %>
+                <li><%= link_to current_user.full_name, "/users/#{current_user.id}" %></li>
+                <li><%= image_tag(current_user.avatar_url, {class: "profile-pic"}) if current_user.avatar? %></li>
+                <li><%= button_to 'Sign out', sign_out_path, method: :delete, id: "sign-out" %></li>
+              <% else %>
+                <li><a href="#" data-toggle="modal" data-target="#myModal">Sign in</a></li>
+                <% if Clearance.configuration.allow_sign_up? %>
+                  <li><%= link_to t(".sign_up"), sign_up_path %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div id="content" class="container-fluid">
       <div id="flash">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
         <% end %>
       </div>
-
       <%= yield %>
     </div>
   </body>
