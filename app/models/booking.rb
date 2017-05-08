@@ -11,16 +11,17 @@ class Booking < ApplicationRecord
     return if self.listing_id.nil?
 
     self.listing.bookings.where.not(id: nil).each do |x|
+      next if x == self
       if self.check_in <= x.check_out && self.check_out >= x.check_in
-        self.errors.add(:check_in, "overlaps")
+        self.errors.add(:check_in, "overlaps with #{x.to_json}")
       end
     end
   end
 
   def future_dates_only
-    return if self.check_out.nil?
+    return if self.check_in.nil? || self.check_out.nil?
 
-    if self.check_out <= DateTime.now
+    if self.check_in <= DateTime.now || self.check_out <= DateTime.now
       self.errors.add(:check_in, "must check in and out in a future date")
     end
   end
