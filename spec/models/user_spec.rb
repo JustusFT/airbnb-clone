@@ -15,9 +15,9 @@ RSpec.describe User, type: :model do
     end
   end
 
-  it "have 3 authourity levels" do
-    expect(FactoryGirl.create(:user, role: 0).room_type).to eq("customer")
-    expect(FactoryGirl.create(:user, role: 1).room_type).to eq("moderator")
-    expect(FactoryGirl.create(:user, role: 2).room_type).to eq("admin")
+  it "have 3 authority levels" do
+    expect(FactoryGirl.create(:user, role: 0).role).to eq("customer")
+    expect(FactoryGirl.create(:user, role: 1).role).to eq("moderator")
+    expect(FactoryGirl.create(:user, role: 2).role).to eq("admin")
   end
 end
