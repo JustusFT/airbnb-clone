@@ -12,6 +12,13 @@ RSpec.describe BookingsController, type: :controller do
   end
 
   describe "GET #new" do
+    it "redirects to login page if the user is logged out" do
+      controller.stub(:signed_in?){ false }
+      listing = FactoryGirl.create(:listing)
+      get :new, params: { listing_id: listing.id }
+      expect(response).to redirect_to("/sign_in")
+    end
+
     it "returns http success" do
       expect(response).to have_http_status(:success)
     end
