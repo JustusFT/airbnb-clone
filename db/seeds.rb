@@ -48,7 +48,7 @@ ActiveRecord::Base.transaction do
     l = Listing.new(listing)
 
     random_photos = []
-    3.times do
+    2.times do
       url = Faker::LoremPixel.image("1280x720", false, "city")
       i = MiniMagick::Image.open(url)
       random_photos << i

@@ -22,8 +22,8 @@ class BookingsController < ApplicationController
       session[:booking] = @booking
       redirect_to "/braintree/new"
     else
-      flash[:notice] = @booking.errors.messages
-      redirect_to @listing
+      flash[:alert] = @booking.errors.messages
+      render "new"
     end
   end
 
