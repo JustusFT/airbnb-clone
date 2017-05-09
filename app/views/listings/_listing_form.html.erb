@@ -1,102 +1,83 @@
-<%= form_for @listing do |f| %>
-  <div style="display: inline-block">
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :name %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.text_field :name, type: 'text' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :description %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.text_area :description, type: 'text' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :price %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.number_field :price, type: 'number' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :address %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.text_field :address, type: 'text' %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <%= f.label :room_type %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.select :room_type, room_type_collection %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :room_count %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.number_field :room_count, type: 'number' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :bed_count %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.number_field :bed_count, type: 'number' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :guest_count %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.number_field :guest_count, type: 'number' %>
-      </div>
-    </div>
-
-    <div class="text-field row">
-      <div class="col-sm-6">
-        <%= f.label :tag_list %>
-        (Separate tags with a comma)
-      </div>
-      <div class="col-sm-6">
-        <%= f.text_field :tag_list, type: 'text' %>
-      </div>
-    </div>
-
-    <fieldset id="fieldset-amenities" class="checkboxradio">
-      <legend>Amenities: </legend>
-      <%= form_tag do %>
-        <% amenities_array.each do |x| %>
-          <%= check_box_tag("amenities[#{x}]") %>
-          <%= label_tag("amenities[#{x}]", x.to_s.humanize) %>
-        <% end %>
-      <% end %>
-    </fieldset>
-
-    <h3>Photos</h3>
-    <%= f.file_field :photos, multiple: true %>
-
-    <div class="submit-field">
-      <%= f.submit %>
+<div style="max-width: 640px; margin: 0 auto">
+<%= form_for @listing, html: {class: "form-horizontal"} do |f| %>
+  <div class="form-group">
+    <%= f.label :name, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :description, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :room_type, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.select :room_type, room_type_collection, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :room_count, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.number_field :room_count, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :bed_count, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.number_field :bed_count, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :guest_count, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.number_field :guest_count, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tag_list, nil, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :tag_list, class: "form-control" %>
+    </div>
+  </div>
+
+  <fieldset id="fieldset-amenities" class="checkboxradio">
+    <legend>Amenities: </legend>
+    <%= form_tag do %>
+      <% amenities_array.each do |x| %>
+        <%= label_tag "amenities[#{x}]", x.to_s.humanize, class: "control-label" %>
+        <%= check_box_tag "amenities[#{x}]", class: "form-control" %>
+      <% end %>
+    <% end %>
+  </fieldset>
+
+  <h3>Photos</h3>
+  <%= label_tag :photos %>
+  <%= f.file_field :photos, multiple: true %>
+
+  <div><%= f.submit %></div>
+  </div>
 <% end %>
+</div>

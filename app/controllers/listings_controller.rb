@@ -11,6 +11,7 @@ class ListingsController < ApplicationController
     @listings = @listings.tags(@query_params[:tags]) unless @query_params[:tags].nil?
     @listings = @listings.amenities(@query_params[:amenities]) unless @query_params[:amenities].nil?
     @listings = @listings.date_overlap(@query_params[:check_out]) unless @query_params[:check_in].nil? || @query_params[:check_out].nil?
+    @listings = @listings.search_bar(@query_params[:search]) unless @query_params[:search].nil?
   end
 
   def new
