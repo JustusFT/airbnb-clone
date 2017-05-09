@@ -16,6 +16,11 @@ class Listing < ApplicationRecord
   enum room_type: [ :entire_home, :private_room, :shared_room ]
 
   mount_uploaders :photos, ListingPhotoUploader
+  before_destroy :destroy_assets
+
+  def destroy_assets
+    self.photos.each {|x| x.remove!}
+  end
 
   def one_photo_required
     unless self.photos?

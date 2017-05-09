@@ -58,4 +58,13 @@ RSpec.configure do |config|
 
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.after(:each) do
+    Listing.all.each do |x|
+      x.destroy_assets
+    end
+
+    User.all.each do |x|
+      x.avatar.remove!
+    end
+  end
 end
