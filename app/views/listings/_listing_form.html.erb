@@ -1,5 +1,5 @@
 <div style="max-width: 640px; margin: 0 auto">
-<%= form_for @listing, html: {class: "form-horizontal"} do |f| %>
+  <%= form_for @listing, html: {class: "form-horizontal"} do |f| %>
   <div class="form-group">
     <%= f.label :name, nil, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
@@ -65,11 +65,9 @@
 
   <fieldset id="fieldset-amenities" class="checkboxradio">
     <legend>Amenities: </legend>
-    <%= form_tag do %>
-      <% amenities_array.each do |x| %>
-        <%= label_tag "amenities[#{x}]", x.to_s.humanize, class: "control-label" %>
-        <%= check_box_tag "amenities[#{x}]", class: "form-control" %>
-      <% end %>
+    <% amenities_array.each do |x| %>
+      <%= label_tag "amenities[#{x}]", x.to_s.humanize, class: "control-label" %>
+      <%= check_box_tag "amenities[#{x}]", class: "form-control" %>
     <% end %>
   </fieldset>
 
@@ -78,6 +76,5 @@
   <%= f.file_field :photos, multiple: true %>
 
   <div><%= f.submit %></div>
-  </div>
-<% end %>
+  <% end %>
 </div>

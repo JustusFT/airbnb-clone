@@ -58,13 +58,16 @@ RSpec.configure do |config|
 
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  config.after(:each) do
-    Listing.all.each do |x|
-      x.destroy_assets
-    end
 
-    User.all.each do |x|
-      x.avatar.remove!
-    end
+  # CARRIERWAVE SETUP AND CLEANUP
+  config.before(:each) do
+    # upload to a temporary folder
+    ListingPhotoUploader.any_instance.stub(:store_dir).and_return("tmp_spec")
+    ListingPhotoUploader.any_instance.stub(:cache_dir).and_return("tmp_spec/tmp")
+  end
+
+  config.after(:suite) do
+    # delete temporary folder after tests
+    FileUtils.remove_dir("public/tmp_spec")
   end
 end
