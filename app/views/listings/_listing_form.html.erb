@@ -1,5 +1,5 @@
 <div style="max-width: 640px; margin: 0 auto">
-  <%= form_for @listing, html: {class: "form-horizontal"} do |f| %>
+  <%= form_for listing, html: {class: "form-horizontal"} do |f| %>
   <div class="form-group">
     <%= f.label :name, nil, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
@@ -67,7 +67,7 @@
     <legend>Amenities: </legend>
     <% amenities_array.each do |x| %>
       <%= label_tag "amenities[#{x}]", x.to_s.humanize, class: "control-label" %>
-      <%= check_box_tag "amenities[#{x}]", class: "form-control" %>
+      <%= check_box_tag "amenities[#{x}]" %>
     <% end %>
   </fieldset>
 

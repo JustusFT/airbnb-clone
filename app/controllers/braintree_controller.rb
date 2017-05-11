@@ -10,7 +10,9 @@ class BraintreeController < ApplicationController
   def checkout
     nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
 
-    price = @booking.listing.price * (@booking.check_out - @booking.check_in).to_f
+    listing = @booking.listing
+    date_difference = @booking.check_out - @booking.check_in
+    price = listing.price * date_difference.to_f
 
     result = Braintree::Transaction.sale(
       :amount => price,

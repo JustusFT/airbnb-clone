@@ -33,4 +33,18 @@ class Listing < ApplicationRecord
       return false
     end
   end
+
+  def self.filter(params={})
+    params[:page] ||= 1
+    params[:min_bed_count] ||= 0
+
+    listings = Listing.bed_count(params[:min_bed_count])
+    listings = listings.room_type(params[:room_types]) unless params[:room_types].nil?
+    listings = listings.tags(params[:tags]) unless params[:tags].nil?
+    listings = listings.amenities(params[:amenities]) unless params[:amenities].nil?
+    listings = listings.date_overlap(params[:check_out]) unless params[:check_in].nil? || params[:check_out].nil?
+    listings = listings.search_bar(params[:search]) unless params[:search].nil?
+
+    listings
+  end
 end
