@@ -34,6 +34,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @user = @listing.user
   end
 
   def edit
