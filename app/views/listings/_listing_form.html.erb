@@ -67,7 +67,7 @@
     <legend>Amenities: </legend>
     <% amenities_array.each do |x| %>
       <%= label_tag "amenities[#{x}]", x.to_s.humanize, class: "control-label" %>
-      <%= check_box_tag "amenities[#{x}]", class: "form-control" %>
+      <%= check_box_tag "amenities[#{x}]" %>
     <% end %>
   </fieldset>
 
