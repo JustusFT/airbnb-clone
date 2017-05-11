@@ -31,10 +31,7 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find(params[:id])
-    unless @listing.user_id == current_user.id
-      redirect_to @listing
-    end
+    @listing = current_user.listings.find(params[:id])
   end
 
   def update
