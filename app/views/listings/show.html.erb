@@ -23,7 +23,11 @@
   background-position: center center;
 }
 </style>
-<%= raw "<div id='listing-header-image', style='background-image: url(#{@listing.photos.first})'></div>" %>
+<%= raw "
+  <div id='listing-header-image', style='position: relative; background-image: url(#{@listing.photos.first})'>
+    <button class='btn btn-default' style='position: absolute; bottom: 16px; left: 16px;'>View more photos</button>
+  </div>
+" %>
 
 <%= link_to "Edit Listing", action: "edit" if signed_in? && @listing.user_id == current_user.id %>
 

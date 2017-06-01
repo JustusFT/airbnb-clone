@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  root "pages#homepage"
+  root "listings#index"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 end

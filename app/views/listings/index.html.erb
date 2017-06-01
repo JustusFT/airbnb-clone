@@ -1,6 +1,5 @@
 <div style="margin-top: -16px; padding-bottom: 16px">
-  <h3><%= link_to "New Listing", (signed_in? ? "/listings/new" : "/sign_in") %></h3>
-  <h3><a href="#filters" data-toggle="collapse">Show Filters</a></h3>
+  <div><a class="btn btn-default" href="#filters" data-toggle="collapse">Show Filters</a></div>
   <div id="filters" class="collapse">
     <%= form_tag "/listings", method: "get" do %>
       <%= label_tag :min_bed_count  %>
